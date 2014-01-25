@@ -138,6 +138,7 @@ INSTALLED_APPS = (
     'django.contrib.humanize',
     'django.contrib.markup',
     'note',
+    'sirtrevor',
     'django.contrib.admin',
     'django.contrib.admindocs',
     'haystack',

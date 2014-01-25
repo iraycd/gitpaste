@@ -3,6 +3,7 @@ import pytz
 from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
+from sirtrevor.fields import SirTrevorField
 
 import timezone
 
@@ -154,7 +155,7 @@ class Comment(models.Model):
 class Note(models.Model):
     absolute_path = models.CharField(max_length=2048)
     filename = models.CharField(max_length=255)
-    note = models.TextField()
+    note = SirTrevorField()
     revision = models.ForeignKey(Commit)
     created = models.DateTimeField(auto_now_add=True)
     priority = models.IntegerField()

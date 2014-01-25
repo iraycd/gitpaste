@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
+from sirtrevor.forms import SirTrevorFormField
+from sirtrevor.widgets import SirTrevorWidget
 from models import *
 
 
@@ -53,7 +55,7 @@ class NoteForm(forms.Form):
             return ''
         return d
 
-    note = forms.CharField(widget=forms.Textarea, required=False)
+    note = SirTrevorFormField(widget=SirTrevorWidget, required=False)
 
 
 class UserCreationForm(UserCreationForm):
