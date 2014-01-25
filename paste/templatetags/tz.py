@@ -10,7 +10,7 @@ except ImportError:
 from django.template import Node
 from django.template import TemplateSyntaxError, Library
 
-from saic.paste import timezone
+from paste import timezone
 
 register = Library()
 

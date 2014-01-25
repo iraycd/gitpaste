@@ -1,7 +1,7 @@
 from django.conf.urls.defaults import patterns, include, url
 from django.views.generic import RedirectView
 
-urlpatterns = patterns('saic.paste.views',
+urlpatterns = patterns('paste.views',
     url(r'^live/$', 'live_paste', name='live_paste'),
     url(r'^(?P<pk>\d+)/$', RedirectView.as_view(url= '/paste/%(pk)s/')),
     url(r'^(?P<pk>\d+)/(?P<private_key>[a-zA-Z0-9]+)?/?$', RedirectView.as_view(url= '/paste/%(pk)s/%(private_key)s/')),

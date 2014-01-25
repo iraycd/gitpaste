@@ -44,7 +44,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'gitpaste',
+        'NAME': 'gitpaste.db',
         'USER': '',
         'PASSWORD': '',
         'HOST': '',
@@ -130,10 +130,10 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'saic.paste.middleware.TimezoneMiddleware',
+    'paste.middleware.TimezoneMiddleware',
 )
 
-ROOT_URLCONF = 'saic.urls'
+ROOT_URLCONF = 'urls'
 ROOTDIR = os.path.abspath(os.path.dirname(__file__)) 
 
 TEMPLATE_DIRS = (
@@ -149,7 +149,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'django.contrib.markup',
-    'saic.paste',
+    'paste',
     'django.contrib.admin',
     'django.contrib.admindocs',
     'haystack',
@@ -186,7 +186,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
         'django.core.context_processors.media',
         'django.core.context_processors.static',
         'django.contrib.messages.context_processors.messages',
-        'saic.context_processors.use_tz',
-        'saic.context_processors.use_icon',
-        'saic.context_processors.site',
+        'context_processors.use_tz',
+        'context_processors.use_icon',
+        'context_processors.site',
 )
