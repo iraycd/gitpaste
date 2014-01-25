@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title %}{% endblock %}</title>
+    <meta charset='UTF-8'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700|Lato:400,700|Droid+Sans+Mono' rel='stylesheet'>
+    <link rel='stylesheet' media='screen' href='{{ STATIC_URL }}/css/base.css'>
+    <link rel='stylesheet' media='print' href='{{ STATIC_URL }}/css/base-print.css'>
+    <script src='{{ STATIC_URL }}/js/jquery-1.7.1.min.js'></script>
+    {% block jsheader %}{% endblock %}
+  </head>
+  <body>
+      <nav class='top-bar'>
+          <ul>
+              <li><a title='Create a new note.' href='{% url "note" %}'>New Note</a></li>
+              <!--<li><a title='Search for notes by others.' href='/search/'>Search</a></li>-->
+              <li><a title='Views a list of users' href='{% url "users" %}'>Users</a></li>
+              <li><a title='All notes' href='{% url "user_notes" owner='all' %}'>All Notes</a></li>
+              <li>|</li>
+              {% if user.is_authenticated %}
+              <li><a title='View a list of your contributed notes.' href='{% url "user_notes" owner=user.pk %}'>Contributed ({{ user.set_set.all.count }})</a></li>
+              <li><a title='View a list of your favorited notes.' href='{% url "favorites" %}'>Favorites ({{ user.favorite_set.all.count }})</a></li>
+              <li><a title='Modify your user preference.' href='{% url "preference" %}'>Preferences</a></li>
+              <li><a title='Logout' href='{% url "logout" %}'>Logout</a></li>
+              {% else %}
+              <li><a title='Login' href='{% url "login" %}'>Login</a></li>
+              <li><a title='Register' href='{% url "register" %}'>Register</a></li>
+              {% endif %}
+          </ul>
+          <a href='{% url "note" %}'><img alt='quark-note' src='{{ STATIC_URL }}/img/logo.png'></a>
+      </nav>
+      <div class='clear'></div>
+      <div id='wrapper'>
+          {% block content %}
+          {% endblock %}
+      </div>
+  </body>
+</html>

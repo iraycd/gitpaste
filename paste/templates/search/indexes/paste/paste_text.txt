@@ -1,4 +1,0 @@
-{{ object.paste }}
-{{ object.language }}
-{{ object.revision.commit }}
-{{ object.filename }}

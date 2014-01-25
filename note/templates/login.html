@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %} Login {% endblock %}
+
+{% block jsheader %}
+<link rel='stylesheet' media='all' type='text/css' href='{{ STATIC_URL }}/css/login.css'>
+{% endblock %}
+
+{% block content %}
+<div id='login'>
+  <form method='POST' id='note-form'>
+    <h1>Login</h1>
+    <div class='entry'>
+      <div>
+        <div> <label>Username: </label> {{ form.username }} </div>
+
+        {% if form.username.errors %}
+          <div>{{ form.username.errors }}</div>
+        {% endif %}
+
+        <div> <label>Password: </label> {{ form.password}} </div>
+
+        {% if form.password.errors %}
+          <div>{{ form.password.errors }}</div>
+        {% endif %}
+
+      </div>
+      <div class='clear'></div>
+    </div>
+    <div class='register'>
+      <input type='submit' value='Login'>
+    </div>
+    <div>
+        <br>
+        {{ form.non_field_errors }}
+    </div>
+    {% csrf_token %}
+  </form>
+</div>
+<script src='{{ STATIC_URL }}/js/note.js'></script>
+{% endblock %}

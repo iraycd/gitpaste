@@ -15,28 +15,16 @@ HAYSTACK_CONNECTIONS = {
 }
 
 
-USE_ICONS = False
-
-def generate_icon(email):
-    """Generates the icon when a user is created. It should
-    return the URL of the gravatar/desired avatar hosting."""
-    import hashlib
-    import urllib
-    size = 40
-    default = 'http://gitpaste.com/static/img/default-icon.png'
-    gravatar = "http://www.gravatar.com/avatar/%s?%s" % (
-            hashlib.md5(email.lower()).hexdigest(),
-            urllib.urlencode({'d':default, 's':str(size)}))
-    return gravatar
+USE_ICONS = True
 
 USE_TZ = True
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-AUTH_PROFILE_MODULE = "paste.Profile"
+AUTH_PROFILE_MODULE = "note.Profile"
 
 ADMINS = (
-        ('Justin Bruce Van Horne', 'JUSTIN.B.VAN.HORNE@saic.com'),
+        ('Ch Ray', 'i@iraycd.com'),
 )
 
 MANAGERS = ADMINS
@@ -44,7 +32,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'gitpaste.db',
+        'NAME': 'note.db',
         'USER': '',
         'PASSWORD': '',
         'HOST': '',
@@ -130,7 +118,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'paste.middleware.TimezoneMiddleware',
+    'note.middleware.TimezoneMiddleware',
 )
 
 ROOT_URLCONF = 'urls'
@@ -149,7 +137,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'django.contrib.markup',
-    'paste',
+    'note',
     'django.contrib.admin',
     'django.contrib.admindocs',
     'haystack',
