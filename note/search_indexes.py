@@ -17,7 +17,6 @@ class NoteIndex(RealTimeSearchIndex):
     text = CharField(document=True, use_template=True)
     note = CharField(model_attr='note')
     filename = CharField(model_attr='filename')
-    language = CharField(model_attr='language')
     commit = CharField(model_attr='revision__commit')
 
     def index_queryset(self):

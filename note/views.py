@@ -272,12 +272,7 @@ def note_view(request, pk, note_set, private_key=None):
 def process_noted_file(form_index, form, repo_dir, index, commit, edit=False):
     data = form.cleaned_data
     filename = data['filename']
-    language_lex, language = data['language'].split(';')
     note = data['note']
-
-    # If we don't specify a filename, then obviously it is lonely
-    if not len(filename):
-        filename = 'note'
 
     # Construct a more logical filename for our commit
     filename_base, ext = os.path.splitext(filename)
@@ -285,12 +280,6 @@ def process_noted_file(form_index, form, repo_dir, index, commit, edit=False):
     filename_abs_base = os.sep.join((repo_dir, filename_slugify))
     filename_absolute = filename_abs_base + ext
 
-    # If no extension was specified in the file, then we can append
-    # the extension from the lexer.
-    if not len(ext):
-        filename_absolute += language
-        filename += language
-        ext = language
 
     if os.path.exists(filename_absolute) and not edit:
         filename_absolute = \
@@ -304,19 +293,6 @@ def process_noted_file(form_index, form, repo_dir, index, commit, edit=False):
     with codecs.open(filename_absolute, "w", "utf-8-sig") as f:
         f.write(note)
 
-    # This is a bit nasty and a get_by_ext something exist in pygments.
-    # However, globals() is just much more fun.
-    lex = globals()[language_lex]
-    note_formatted = highlight(
-            note,
-            lex(),
-            HtmlFormatter(
-                style='friendly',
-                linenos='table',
-                lineanchors='line-%s' % form_index,
-                anchorlinenos=True)
-    )
-
     # Add the file to the index and create the note
     index.add([filename_absolute])
     p = Note.objects.create(
@@ -324,8 +300,6 @@ def process_noted_file(form_index, form, repo_dir, index, commit, edit=False):
             absolute_path=filename_absolute,
             note=note,
             priority=data['priority'],
-            note_formatted=note_formatted,
-            language=data['language'],
             revision=commit
     )
 
@@ -352,7 +326,6 @@ def note_edit(request, pk, note_set, private_key=None):
         initial_data.append({
             'filename': note.filename,
             'note': note.note,
-            'language': note.language,
         })
     initial_set_meta = {
         'private': note_set.private,

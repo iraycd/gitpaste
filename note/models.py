@@ -155,8 +155,6 @@ class Note(models.Model):
     absolute_path = models.CharField(max_length=2048)
     filename = models.CharField(max_length=255)
     note = models.TextField()
-    note_formatted = models.TextField()
-    language = models.CharField(max_length=100)
     revision = models.ForeignKey(Commit)
     created = models.DateTimeField(auto_now_add=True)
     priority = models.IntegerField()
