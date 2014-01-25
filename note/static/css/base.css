@@ -48,6 +48,11 @@ div.clear {
     clear: both;
 }
 
+#logo{
+    height: 50px;
+    width: 60px;
+}
+
 #notes {
     width: 66%;
     margin: 1%;
