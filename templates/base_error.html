@@ -2,14 +2,14 @@
 <html>
   <head>
     <title>{% block title %}{% endblock %}</title>
-    <link rel='stylesheet' media='screen' type='text/css' href='{{ STATIC_URL }}/css/base.css'>
-    <link rel='stylesheet' media='print' type='text/css' href='{{ STATIC_URL }}/css/base-print.css'>
+    <link rel='stylesheet' media='screen' type='text/css' href='{{ STATIC_URL }}css/base.css'>
+    <link rel='stylesheet' media='print' type='text/css' href='{{ STATIC_URL }}css/base-print.css'>
     <script src='{{ STATIC_URL }}/js/jquery-1.7.1.min.js'></script>
     {% block jsheader %}{% endblock %}
   </head>
   <body>
     <div id='header'>
-      <a href='{% url "note" %}'><img alt='quark-note' src='{{ STATIC_URL }}/img/logo.png'></a>
+      <a href='{% url "note" %}'><img alt='quark-note' src='{{ STATIC_URL }}img/logo.svg'></a>
       <div id='navigation'>
         <ul>
           <li><a title='Create a new note.' href='{% url "note" %}'>New Note</a></li>
