@@ -715,7 +715,7 @@ def set_timezone(request):
 
 
 def note_embed(request, pk, private_key=None):
-    theme = request.GET.get('theme', 'tango')
+    theme = request.GET.get('theme', 'swiss')
     jsonp = request.GET.get('jsonp')
     args = request.GET.getlist('arg')
     filtering = {'pk': pk}
@@ -730,7 +730,7 @@ def note_embed(request, pk, private_key=None):
         return HttpResponse(call, mimetype='text/html');
     return render_to_response('embed.html',
             {'note': note, 'theme': theme, 'jsonp': jsonp, 'args': args}, 
-            RequestContext(request), mimetype='text/html');
+            RequestContext(request), mimetype='text/javascript');
 
 def live_note(request):
     commit_kwargs = {}
