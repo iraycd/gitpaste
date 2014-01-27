@@ -39,7 +39,7 @@ div.entry-header {
 
 .note-list > div:nth-child(odd) { 
   margin-bottom: 5px;
-  border-bottom: 1px solid #EFEFEF;
+  border-bottom: 1px solid #FFF;
 }
 
 .note-list > div:last-child {

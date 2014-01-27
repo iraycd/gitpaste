@@ -96,13 +96,13 @@ div.entry div > select,
 div.entry div > input {
     border-radius: 5px;
     border: 1px solid #999;
-    background-color: #FAFAFA;
+    background-color: #FFF;
     color: #444;
 }
 
 div.entry textarea {
     border-radius: 5px;
-    background-color: #FAFAFA;
+    background-color: #FFF;
 }
 
 li.active {

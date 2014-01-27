@@ -12,7 +12,7 @@ body, html {
 nav.top-bar {
     border-bottom: 1px solid #DDD;
     width: 100%;
-    background-color: #EFEFEF;
+    background-color: #FFF;
     box-shadow: 1px 1px 5px #999;
     height: 45px;
 }
@@ -34,14 +34,14 @@ nav.top-bar ul {
 
 nav.top-bar ul li {
     display: inline;
-    color: #4183C4;
+    color: #5f6f81;
     font-size: 12px;
     font-weight: bold;
     padding: 0 10px;
 }
 
 #wrapper {
-    margin: 15px 0 80px 0;
+    margin: 80px 0 80px 0;
 }
 
 div.clear {
@@ -50,7 +50,7 @@ div.clear {
 
 #logo{
     height: 50px;
-    width: 60px;
+    width: 55px;
 }
 
 #notes {
@@ -111,7 +111,7 @@ div.entryless,
 div.entry {
     position: relative;
     margin: 0 auto;
-    background-color: #EFEFEF;
+    background-color: #FFF;
     border: 1px solid #DDD;
 }
 
@@ -179,7 +179,7 @@ div.entry div > input,
 div.submit_options > select {
     border: 1px solid #999;
     font-size: 14px;
-    background-color: #FAFAFA;
+    background-color: #FFF;
     color: #444;
     padding: 3px;
 }
@@ -205,7 +205,7 @@ div.entry textarea {
     height: 300px;
     font-family: Consolas, Monaco, "Bitstream Vera sans Mono", monospace;
     font-size: 15px;
-    background-color: #FAFAFA;
+    background-color: #FFF;
     color: #000 !important;
     padding: 0;
 }
@@ -249,7 +249,7 @@ h1 {
 .unlink,
 .link,
 a {
-    color: #4183C4;
+    color: #5f6f81;
     font-weight: bold;
     cursor: pointer;
     text-decoration: none;
@@ -279,7 +279,7 @@ div.add-row {
 div.add-row a {
   display: block;
   padding: 10px 8px 8px 35px;
-  background: 10px no-repeat url('/static/img/icons/page_add.png') #EFEFEF;
+  background: 10px no-repeat url('/static/img/icons/page_add.png') #FFF;
 }
 
 div.add-row a:hover {
