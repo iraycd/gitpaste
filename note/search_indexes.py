@@ -1,27 +1,29 @@
 import datetime
-from haystack.indexes import *
-from haystack import site
+from haystack import indexes
 from models import Note, Commit
 
 
-class CommitIndex(RealTimeSearchIndex):
-    text = CharField(document=True, use_template=True)
-    commit = CharField(model_attr='commit')
-    user = CharField(model_attr='owner', null=True)
+class CommitIndex(indexes.SearchIndex,indexes.Indexable):
+    text = indexes.CharField(document=True, use_template=True)
+    commit = indexes.CharField(model_attr='commit')
+    user = indexes.CharField(model_attr='owner', null=True)
 
-    def index_queryset(self):
+    def index_queryset(self, using=None):
         return Commit.objects.all()
 
 
-class NoteIndex(RealTimeSearchIndex):
-    text = CharField(document=True, use_template=True)
-    note = CharField(model_attr='note')
-    filename = CharField(model_attr='filename')
-    commit = CharField(model_attr='revision__commit')
+    def get_model(self):
+        return Commit
 
-    def index_queryset(self):
+class NoteIndex(indexes.SearchIndex,indexes.Indexable):
+    text = indexes.CharField(document=True, use_template=True)
+    note = indexes.CharField(model_attr='note')
+    filename = indexes.CharField(model_attr='filename')
+    commit = indexes.CharField(model_attr='revision__commit')
+
+    def index_queryset(self, using=None):
         return Note.objects.all()
 
 
-site.register(Note, NoteIndex)
-site.register(Commit, CommitIndex)
+    def get_model(self):
+        return Note
