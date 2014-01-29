@@ -68,8 +68,8 @@ $(document).ready(function (doc) {
 
 
     $('#sortable li').formset({
-        'addText': 'add another file to this note',
-        'deleteText': 'delete this file',
+        'addText': 'Add another note to this set',
+        'deleteText': 'Delete this note',
         'added': function () {
             $('div.entry:last div.anonymous').remove();
             $('textarea').tabby({'tabString': '    '});
