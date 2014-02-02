@@ -6,17 +6,13 @@
 {% block title %}Rat Note{% endblock %}
 
 {% block jsheader %}
-<script src='{{ STATIC_URL }}/js/jquery.formset.min.js'></script>
-<link rel='stylesheet' media='all' type='text/css' href='{{ STATIC_URL }}css/note.css'>
-<link rel='stylesheet' media='all' type='text/css' href='{{ STATIC_URL }}css/float-label.css'>
+<script src='{{ STATIC_URL }}js/jquery.formset.min.js'></script>
 <link href="/static/sirtrevor/components/sir-trevor-js/sir-trevor.css" type="text/css" media="all" rel="stylesheet" />
 <link href="/static/sirtrevor/components/sir-trevor-js/sir-trevor-icons.css" type="text/css" media="all" rel="stylesheet" />
 <script type="text/javascript" src="/static/sirtrevor/components/underscore/underscore-min.js"></script>
 <script type="text/javascript" src="/static/sirtrevor/components/Eventable/eventable.js"></script>
 <script type="text/javascript" src="/static/sirtrevor/components/sir-trevor-js/sir-trevor.js"></script>
 <script type="text/javascript" src="/static/sirtrevor/init.js"></script>
-
-<link rel='stylesheet' media='all' type='text/css' href='{{ STATIC_URL }}css/st.css'>
 
 {% endblock %}
 
@@ -146,5 +142,5 @@
     {{ forms.management_form }}
     </form>
 </div>
-<script src='{{ STATIC_URL }}/js/note.js'></script>
+<script src='{{ STATIC_URL }}js/note.js'></script>
 {% endblock %}
