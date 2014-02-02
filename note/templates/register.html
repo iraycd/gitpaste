@@ -7,31 +7,46 @@
 {% endblock %}
 
 {% block content %}
-<div id='login'>
-  <form method='POST' id='note-form'>
-    <h1>Register</h1>
-    <div class='entry'>
-      <div>
-        <div> <label>Username: </label> {{ form.username }} </div>
-        {% if form.username.errors %}
-          <div>{{ form.username.errors }}</div>
-        {% endif %}
-        <div> <label>Password: </label> {{ form.password1 }} </div>
-        {% if form.password1.errors %}
-          <div>{{ form.password1.errors }}</div>
-        {% endif %}
-        <div> <label>Confirm: </label> {{ form.password2 }} </div>
-        {% if form.password2.errors %}
-          <div>{{ form.password2.errors }}</div>
-        {% endif %}
-      </div>
-      <div class='clear'></div>
-    </div>
-    <div class='register'>
-      <input type='submit' value='Register'>
-    </div>
-    {% csrf_token %}
-  </form>
-</div>
+	<div id="login">
+		<h1><strong>Register</strong></h1>
+          <form method='POST' id='note-form'>
+			<fieldset>
+				<p>{{ form.username }}</p> <!-- JS because of IE support; better: placeholder="Username" -->
+                <p>        
+                {% if form.username.errors %}
+                    <div>{{ form.username.errors }}</div>
+                {% endif %}
+                </p>
+				<p>{{ form.password1}}</p> <!-- JS because of IE support; better: placeholder="Password" -->
+                <p>
+                {% if form.password1.errors %}
+                  <div>{{ form.password1.errors }}</div>
+                {% endif %}
+                </p>
+				<p>{{ form.password2}}</p> <!-- JS because of IE support; better: placeholder="Password" -->
+                <p>
+                {% if form.password2.errors %}
+                  <div>{{ form.password2.errors }}</div>
+                {% endif %}
+                </p>
+				<p><input type="submit" value="Register"></p>
+	            <p><a href="{% url 'login' %}">Do you already have an account?</a></p>
+                <p>
+                {{ form.non_field_errors }}</p>
+			</fieldset>
+            {% csrf_token %}
+		</form>
+{%comment%}
+		<p><span class="btn-round">or</span></p>
+		<p>
+			<a class="facebook-before"><span class="fontawesome-facebook"></span></a>
+			<button class="facebook">Register Using Facbook</button>
+		</p>
+		<p>
+			<a class="twitter-before"><span class="fontawesome-twitter"></span></a>
+			<button class="twitter">Register Using Twitter</button>
+		</p>
+{%endcomment%}
+	</div>
 <script src='{{ STATIC_URL }}/js/note.js'></script>
 {% endblock %}

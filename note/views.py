@@ -29,7 +29,6 @@ from django.template import RequestContext
 from django.utils.encoding import smart_str, smart_unicode
 from django.forms.formsets import formset_factory
 from django.template.defaultfilters import slugify
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.forms import ValidationError
@@ -37,7 +36,7 @@ from django.core.servers.basehttp import FileWrapper
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 
-from forms import NoteForm, SetForm, UserCreationForm, CommentForm
+from forms import NoteForm, SetForm, UserCreationForm, CommentForm, UserAuthenticationForm
 from forms import CommitMetaForm, SetMetaForm, PreferenceForm
 from models import Set, Note, Commit, Favorite, Comment, Preference
 
@@ -591,11 +590,11 @@ def register(request):
 def login(request):
     """Handles the logic for logging a user into the system."""
     if request.method != 'POST':
-        form = AuthenticationForm()
+        form = UserAuthenticationForm()
         return render_to_response('login.html',
                 {'form': form}, RequestContext(request))
 
-    form = AuthenticationForm(data=request.POST)
+    form = UserAuthenticationForm(data=request.POST)
     if not form.is_valid():
         return render_to_response('login.html',
                 {'form': form}, RequestContext(request))

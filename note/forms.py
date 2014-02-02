@@ -1,11 +1,14 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 
 from sirtrevor.forms import SirTrevorFormField
 from sirtrevor.widgets import SirTrevorWidget
 from models import *
-
+class UserAuthenticationForm(AuthenticationForm):
+    # add your form widget here
+    username = forms.CharField(max_length=30, widget = forms.TextInput(attrs={'placeholder': 'Username'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
 
 class CommitMetaForm(forms.Form):
     """These correspond to a particular commit or iteration of a note."""
@@ -59,6 +62,9 @@ class NoteForm(forms.Form):
 
 
 class UserCreationForm(UserCreationForm):
+    username = forms.CharField(max_length=30, widget = forms.TextInput(attrs={'placeholder': 'Username'}))
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Enter Password'}))
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Again.'}))
     def __init__(self, *args, **kwargs):
         super(UserCreationForm, self).__init__(*args,
 **kwargs)

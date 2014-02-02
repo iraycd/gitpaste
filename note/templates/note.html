@@ -15,24 +15,13 @@
 <script type="text/javascript" src="/static/sirtrevor/components/Eventable/eventable.js"></script>
 <script type="text/javascript" src="/static/sirtrevor/components/sir-trevor-js/sir-trevor.js"></script>
 <script type="text/javascript" src="/static/sirtrevor/init.js"></script>
+
 <link rel='stylesheet' media='all' type='text/css' href='{{ STATIC_URL }}css/st.css'>
 
 {% endblock %}
 
 {% block content %}
 <section class='meta'>
-{% if not user.parent_set_set.all.count %}
-    <section class='yellow-box'>
-        <p>
-        <strong>Note</strong> is a simple way to <strong>share snippets and notes</strong> with others. It is an <strong>open-source</strong> <a href='http://gist.github.com'>github:gist</a> clone.
-            All notes are git repositories, so they are automatically <strong>versioned</strong> and
-            <strong>forkable</strong>.
-        </p>
-        <p>
-            <a href='https://github.com/justinvh/ratnote'>Fork Note on GitHub and improve it.</a>
-        </p>
-    </section>
-{% endif %}
     <section class='note-list'>
     {% if user.is_authenticated %}
         {% if not user.set_set.all.count %}
