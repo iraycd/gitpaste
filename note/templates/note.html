@@ -19,7 +19,7 @@
 {% endblock %}
 
 {% block content %}
-<section class='meta column_2'>
+<section class='meta column_2 hide-phone'>
     <section class='note-list'>
     {% if user.is_authenticated %}
         {% if not user.set_set.all.count %}
