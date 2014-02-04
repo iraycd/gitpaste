@@ -49,7 +49,8 @@ class NoteForm(forms.Form):
                 'placeholder': 'Title of the note',
                 'class': 'filename'
             }))
-
+    note = SirTrevorFormField(widget=SirTrevorWidget, required=False)
+    
     def clean_filename(self):
         d = self.cleaned_data.get('filename')
         if d is None:
@@ -58,7 +59,6 @@ class NoteForm(forms.Form):
             return ''
         return d
 
-    note = SirTrevorFormField(widget=SirTrevorWidget, required=False)
 
 
 class UserCreationForm(UserCreationForm):
