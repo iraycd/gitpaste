@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+ds{% extends "base.html" %}
 {% load humanize %}
 {% load elapsed %}
 {% load tz %}
@@ -52,7 +52,7 @@
             {% if set.private %}
             <img src='{{ STATIC_URL }}img/icons/key.png' alt='private' title='This note is private' style='vertical-align: middle'>
             {% endif %}
-            <a href='{% url "note_view" pk=set.pk %}'>Note {{ set.pk }}{% if set.description %}: {{ set.description }}{% endif %}</a>
+            <a href='{% url "note_view" pk=set.pk %}'>Note {{ set.pk }}{% if set.name %}: {{ set.name }}{% endif %}</a>
             {% if set.private %}
             {% endif %}
           <br>

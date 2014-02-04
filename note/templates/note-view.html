@@ -4,8 +4,8 @@
 {% load tz %}
 
 {% block title %}
-{% if note_set.description %}
-ratnote.com - "{{ note_set.description }}"
+{% if note_set.name %}
+ratnote.com - "{{ note_set.name }}"
 {% else %}
 ratnote.com - anonymous note
 {% endif %}
@@ -113,7 +113,7 @@ ratnote.com - anonymous note
       </span>
     </span>
       <br>
-      {% if note_set.description %}"{{ note_set.description }}"{% endif %}
+      {% if note_set.name %}"{{ note_set.name }}"{% endif %}
       {% if commit_current.owner %} by <strong><a href='{% url "user_notes" owner=commit_current.owner.pk %}'>{{ commit_current.email }}</a></strong> {% endif %}
       <span class='date' title="{{ commit_current.created|localtime }}">
         {{ commit_current.created|elapsed }}
@@ -147,9 +147,9 @@ ratnote.com - anonymous note
 
   {% for note in notes %}
     <div class='entry'>
-      <div class='description'>
+      <div class='name'>
         <div>
-          {{ note.description }}
+          {{ note.name }}
         </div>
       </div>
       <div class='file'>
@@ -164,7 +164,9 @@ ratnote.com - anonymous note
       </div>
       <div class='note'>
         <div>
-          {{ note.note.html|safe }}
+          {%if note.note %}
+            {{ note.note.html|safe }}
+          {%endif%}
         </div>
       </div>
     </div>

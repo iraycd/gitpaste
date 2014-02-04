@@ -81,7 +81,7 @@ class DateTimeFieldTZ(models.DateTimeField):
 
 class Set(models.Model):
     owner = models.ForeignKey(User, null=True, blank=True, default=None)
-    description = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
     repo = models.CharField(max_length=100)
     fork = models.ForeignKey('Commit', null=True, blank=True, default=None, on_delete=models.SET_NULL)
     private = models.BooleanField(default=False)
@@ -109,7 +109,7 @@ class Set(models.Model):
         return self.commit_set.order_by('-created', ).all
 
     def __unicode__(self):
-        return '%s: %s' % (self.repo, self.description)
+        return '%s: %s' % (self.repo, self.name)
 
 
 class Commit(models.Model):

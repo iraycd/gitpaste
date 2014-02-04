@@ -84,8 +84,8 @@ def _git_diff(git_commit_object, repo):
         return None
 
 
-def dirname_from_description(description):
-    return "%s" % os.sep.join((settings.REPO_DIR, slugify(description)))
+def dirname_from_name(name):
+    return "%s" % os.sep.join((settings.REPO_DIR, slugify(name)))
 
 
 def get_owner(request, commit_data, user):
@@ -132,13 +132,13 @@ def note(request):
         }, RequestContext(request))
 
     owner       = get_owner(request, commit_meta_form.cleaned_data, request.user)
-    description = set_form.cleaned_data.get('description')
+    name = set_form.cleaned_data.get('name')
     private     = set_meta_form.cleaned_data.get('private')
     allow_edits = set_meta_form.cleaned_data.get('anyone_can_edit')
 
-    repo_dir = dirname_from_description(description)
-    if not len(description):
-        repo_dir = dirname_from_description(
+    repo_dir = dirname_from_name(name)
+    if not len(name):
+        repo_dir = dirname_from_name(
             ''.join(random.sample(string.ascii_letters + string.digits,
                 random.randrange(20,30))))
     if os.path.isdir(repo_dir):
@@ -164,7 +164,7 @@ def note(request):
             views=0,
             repo=repo_dir,
             owner=owner,
-            description=description,
+            name=name,
             private=private,
             anyone_can_edit=allow_edits,
             private_key=private_key,
@@ -343,7 +343,7 @@ def note_edit(request, pk, note_set, private_key=None):
     if request.method != 'POST':
         set_form = None
         if request.user == note_set.owner:
-            set_form_initial = {'description': note_set.description}
+            set_form_initial = {'name': note_set.name}
             set_form = SetForm(initial=set_form_initial)
         return render_to_response('note.html', {
             'forms': NoteSetEdit(initial=initial_data),
@@ -393,7 +393,7 @@ def note_edit(request, pk, note_set, private_key=None):
 
     if set_form:
         fdata = set_form.cleaned_data
-        note_set.description = fdata['description']
+        note_set.name = fdata['name']
 
     if set_meta_form:
         fdata = set_meta_form.cleaned_data
@@ -468,7 +468,7 @@ def get_first_nonexistent_filename(format_string):
 def note_fork(request, pk, note_set, private_key=None):
     owner = request.user
     repo_dir = get_first_nonexistent_filename(
-        '%s-%s' % (dirname_from_description(note_set.description),
+        '%s-%s' % (dirname_from_name(note_set.name),
                    owner.username if owner else 'anon' ) + '-%d')
 
     if os.path.isdir(repo_dir):
@@ -552,8 +552,8 @@ def commit_adopt(request, pk, commit, private_key=None):
 def commit_download(request, pk, commit, private_key=None):
     sha1 = commit.commit
     git_repo = git.Repo.init(commit.parent_set.repo)
-    description = commit.parent_set.description
-    filename = 'note %s %s %s' % (commit.email, description, commit.short)
+    name = commit.parent_set.name
+    filename = 'note %s %s %s' % (commit.email, name, commit.short)
     filename = slugify(filename)
     return send_zipfile(git_repo.git.archive(sha1, format='zip'), filename)
 
@@ -776,7 +776,7 @@ def live_note(request):
     if request.user.is_authenticated() and not anonymous:
         owner = request.user
 
-    description = set_form.cleaned_data.get('description')
+    name = set_form.cleaned_data.get('name')
     private = set_meta_form.cleaned_data.get('private')
     allow_edits = set_meta_form.cleaned_data.get('anyone_can_edit')
 
@@ -797,7 +797,7 @@ def live_note(request):
             views=0,
             repo=repo_dir,
             owner=owner,
-            description=description,
+            name=name,
             private=private,
             anyone_can_edit=allow_edits,
             private_key=private_key,

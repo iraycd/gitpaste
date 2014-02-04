@@ -38,9 +38,9 @@
             <a href="{% url "note_view" pk=result.object.parent_set.pk %}?commit={{ result.object.commit }}">
             {{ result.object.commit|slice:":8" }}</a>
           
-            {% if result.object.parent_set.description %}
+            {% if result.object.parent_set.name %}
               from
-              <a href='{% url "note_view" pk=result.object.parent_set.pk %}'>{{result.object.parent_set.description }}</a>
+              <a href='{% url "note_view" pk=result.object.parent_set.pk %}'>{{result.object.parent_set.name }}</a>
             {% endif %}
             by
             {% if result.object.owner %}

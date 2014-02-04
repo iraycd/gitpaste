@@ -28,16 +28,16 @@ class SetMetaForm(forms.Form):
     )
 
 class SetForm(forms.Form):
-    description = forms.CharField(max_length=256, required=False,
+    name = forms.CharField(max_length=256, required=False,
             widget=forms.widgets.TextInput(attrs={
-                'placeholder': 'Add description...'
+                'placeholder': 'Add set name...'
             }))
 
-    def clean_description(self):
-        d = self.cleaned_data.get('description')
+    def clean_name(self):
+        d = self.cleaned_data.get('name')
         if d is None:
             return d
-        if d == 'Add description...':
+        if d == 'Add set name...':
             return ''
         return d
 

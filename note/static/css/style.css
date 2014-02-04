@@ -119,7 +119,7 @@ div.clear + div.entry {
 div.stream,
 div.anonymous,
 div.file,
-div.description {
+div.name {
   padding: 2px 5px;
 }
 div.language {
@@ -134,7 +134,7 @@ div.entry > div > div {
   margin: 2px 5px;
 }
 div.entryless > div,
-div.description input {
+div.name input {
   width: 99%;
 }
 div.stream input {
@@ -254,7 +254,7 @@ time,
 .date {
   color: #999;
 }
-span.description {
+span.name {
   color: #666;
 }
 li.active {
@@ -1003,9 +1003,6 @@ div.entry {
 div.file-download {
   display: none;
 }
-span.header a {
-  display: none;
-}
 div.entry input {
   margin-right: 15px;
   float: left;
@@ -1312,7 +1309,7 @@ pre > a {
 a {
   font-size: inherit;
 }
-div.description,
+div.name,
 div.file {
   border: 0;
   font-size: 14px;

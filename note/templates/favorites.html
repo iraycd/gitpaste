@@ -19,7 +19,7 @@
       {% for favorite in favorites %}
         {% with favorite.parent_set as set %}
           <div>
-            <a href='{% url "note_view" pk=set.pk %}'>Note {{ set.pk }}{% if set.description %}: {{ set.description }}{% endif %}</a>
+            <a href='{% url "note_view" pk=set.pk %}'>Note {{ set.pk }}{% if set.name %}: {{ set.name }}{% endif %}</a>
             <br>
             {{ set.commit_set.all.count }} commit{{ set.commit_set.all.count|pluralize }}
             {% with set.commit_set.latest as latest %}
