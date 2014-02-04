@@ -17,7 +17,7 @@
 {% endblock %}
 
 {% block content %}
-<section class='meta'>
+<section class='meta column_2'>
     <section class='note-list'>
     {% if user.is_authenticated %}
         {% if not user.set_set.all.count %}
@@ -55,7 +55,7 @@
     {% endif %}
     </section>
 </section>
-<div id='notes'>
+<div id='notes' class="column_10">
     <form method='POST' id='note-form'>
         <div class='entryless entry-header'>
             <div class='description float-label'>
