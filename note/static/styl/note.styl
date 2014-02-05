@@ -38,3 +38,27 @@ div.entry-header
   border-bottom: 0
   margin-bottom: 0
 
+h1.lead
+  font-size : 2.6em
+
+div.entryless,
+div.entry
+  position: relative
+  margin: 0 auto
+  background-color: #FFF
+
+div.entry
+  margin-top: 10px
+
+div.entryless
+  padding: 5px 0 3px 0
+  + ul > li:first-child > div.entry
+    margin-top: 0
+    + div.entry
+      margin-top: 5px
+
+
+/* typicons */
+[class*="typicons-"]:before {
+  font-family: 'Typicons', sans-serif;
+}

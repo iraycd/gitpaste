@@ -86,33 +86,6 @@ div.clear {
 .sidebar-message {
   width: 90%;
 }
-div.entryless,
-div.entry {
-  position: relative;
-  margin: 0 auto;
-  background-color: #fff;
-  border: 1px solid #ddd;
-}
-div.entry {
-  margin-top: 10px;
-  border-radius: 5px;
-}
-div.entryless + ul > li:first-child > div.entry {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-top: 0;
-  margin-top: 0;
-}
-div.entryless + ul > li:first-child > div.entry + div.entry {
-  margin-top: 5px;
-}
-div.entryless {
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  padding: 5px 0 3px 0;
-}
 div.clear + div.entry {
   margin-top: 10px;
 }
@@ -1000,9 +973,6 @@ div.entry {
 .hidden {
   display: none;
 }
-div.file-download {
-  display: none;
-}
 div.entry input {
   margin-right: 15px;
   float: left;
@@ -1191,6 +1161,30 @@ div.entry-header {
 .note-list > div:last-child {
   border-bottom: 0;
   margin-bottom: 0;
+}
+h1.lead {
+  font-size: 2.6em;
+}
+div.entryless,
+div.entry {
+  position: relative;
+  margin: 0 auto;
+  background-color: #fff;
+}
+div.entry {
+  margin-top: 10px;
+}
+div.entryless {
+  padding: 5px 0 3px 0;
+}
+div.entryless + ul > li:first-child > div.entry {
+  margin-top: 0;
+}
+div.entryless + ul > li:first-child > div.entry + div.entry {
+  margin-top: 5px;
+}
+[class*="typicons-"]:before {
+  font-family: 'Typicons', sans-serif;
 }
 .float-label .control {
   float: left;
