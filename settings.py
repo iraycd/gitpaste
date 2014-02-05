@@ -1,7 +1,7 @@
 import os
 
 ALLOW_ANONYMOUS_POSTS = False
-ALLOW_ANONYMOUS_ACCESS = False
+ALLOW_ANONYMOUS_ACCESS = True
 
 REPO_DIR = os.sep.join([os.path.dirname(os.path.abspath(__file__)), 'repositories'])
 
