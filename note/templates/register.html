@@ -5,7 +5,8 @@
 
 {% block content %}
 	<div id="login">
-		<h1><strong>Register</strong></h1>
+		<h2><strong>Register</strong></h2>
+		  <img class="logo-big" alt='rat notes' src='{{ STATIC_URL }}img/logo-big.png'>
           <form method='POST' id='note-form'>
 			<fieldset>
 				<p>{{ form.username }}</p> <!-- JS because of IE support; better: placeholder="Username" -->
@@ -27,7 +28,7 @@
                 {% endif %}
                 </p>
 				<p><input type="submit" value="Register"></p>
-	            <p><a href="{% url 'login' %}">Do you already have an account?</a></p>
+	            <a href="{% url 'login' %}"><h3>Do you already have an account?</h3></a>
                 <p>
                 {{ form.non_field_errors }}</p>
 			</fieldset>
