@@ -1,3 +1,4 @@
+git+git://github.com/iraycd/django-sirtrevor.git@master
 BeautifulSoup==3.2.1
 Django==1.5.4
 GitPython==0.3.2.RC1
@@ -9,7 +10,6 @@ async==0.6.1
 beautifulsoup4==4.3.2
 django-appconf==0.6
 django-haystack==2.1.0
-django-sirtrevor==0.1.0
 gitdb==0.5.4
 markdown2==2.2.0
 pytz==2011n
