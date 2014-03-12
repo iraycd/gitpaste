@@ -106,7 +106,7 @@ class Set(models.Model):
 
     @property
     def ordered_commits(self):
-        return self.commit_set.order_by('-created', ).all
+        return self.commit_set.order_by('created', ).all
 
     def __unicode__(self):
         return '%s: %s' % (self.repo, self.name)
