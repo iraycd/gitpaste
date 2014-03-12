@@ -268,6 +268,65 @@ def note_view(request, pk, note_set, private_key=None):
         'comment_form': comment_form,
     }, RequestContext(request))
 
+
+@private(Set)
+def note_view2(request, pk, note_set, private_key=None):
+    requested_commit = request.GET.get('commit')
+    user = request.user
+
+    if not settings.ALLOW_ANONYMOUS_ACCESS and not user.is_authenticated():
+        return redirect('login')
+
+    # Increment the views
+    if not note_set.views:
+        note_set.views = 0
+    note_set.views += 1
+    note_set.save()
+    favorited = False
+    if request.user.is_authenticated():
+        favorited = Favorite.objects.filter(
+                parent_set=note_set,
+                user=request.user).exists()
+
+    # A requested commit allows us to navigate in history
+    latest_commit = note_set.commit_set.latest('created')
+    if requested_commit is None:
+        commit = latest_commit
+    else:
+        commit = get_object_or_404(Commit,
+                parent_set=note_set, commit=requested_commit)
+
+    if not commit.views:
+        commit.views = 0
+    commit.views += 1
+    commit.save()
+
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid() and request.user.is_authenticated():
+            comment = Comment.objects.create(
+                    commit=commit,
+                    owner=request.user,
+                    comment=comment_form.cleaned_data['comment']
+            )
+
+    editable = False
+    if note_set.anyone_can_edit or note_set.owner == request.user:
+        if latest_commit == commit:
+            editable = True
+
+    # Always clear the comment form
+    comment_form = CommentForm()
+    return render_to_response('note-view.html', {
+        'note_set': note_set,
+        'notes': commit.note_set.all(),
+        'commit_current': commit,
+        'favorited': favorited,
+        'editable': editable,
+        'comment_form': comment_form,
+    }, RequestContext(request))
+
+
 def process_noted_file(form_index, form, repo_dir, index, commit, edit=False):
     data = form.cleaned_data
     filename = data['filename']
