@@ -65,6 +65,8 @@
 			if( this.isMenuOpen ) return;
 			classie.add( this.trigger, 'selected' );
 			this.isMenuOpen = true;
+			$("#wrapper").animate({marginLeft:"360px"},300);
+			$("#notes").removeClass("column_10").addClass('column_8');
 			classie.add( this.menu, 'open-all' );
 			this._closeIconMenu();
 		},
@@ -72,6 +74,8 @@
 			if( !this.isMenuOpen ) return;
 			classie.remove( this.trigger, 'selected' );
 			this.isMenuOpen = false;
+			$("#wrapper").animate({marginLeft:"0px"},300);
+			$("#notes").removeClass("column_8").addClass('column_10');
 			classie.remove( this.menu, 'open-all' );
 			this._closeIconMenu();
 		}
