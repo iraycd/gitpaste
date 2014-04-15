@@ -10,6 +10,7 @@
 <script src='{{ STATIC_URL }}js/jquery.textarea.js'></script>
 <script src="{{ STATIC_URL }}js/chosen.jquery.js"></script>
 <link href="{{ STATIC_URL }}css/sir-trevor.css" type="text/css" media="all" rel="stylesheet" />
+
 <link href="{{ STATIC_URL }}css/sir-trevor-icons.css" type="text/css" media="all" rel="stylesheet" />
 {% endblock %}
 
@@ -25,7 +26,7 @@
             <div class='notes'>
             {% for set in user.set_set.all|slice:":10" %}
             <div>
-                <a href='{% url "note_view" pk=set.pk %}'>Note {{ set.pk }}{% if set.name %}: {{ set.name }}{% endif %}</a>
+                <a href='{% url "note_view2" pk=set.pk %}'>Note {{ set.pk }}{% if set.name %}: {{ set.name }}{% endif %}</a>
             </div>
             <div>
                 {{ set.commit_set.all.count }} commit{{ set.commit_set.all.count|pluralize }}
@@ -140,9 +141,13 @@
     </form>
 </div>
 
+<script type="text/javascript" src="/static/sirtrevor/require.min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/underscore-min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/eventable.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/sir-trevor.min.js"></script>
+<script type="text/javascript" src="/static/sirtrevor/markdown.js"></script>
+<script type="text/javascript" src="/static/sirtrevor/chart.js"></script>
+<script type="text/javascript" src="/static/sketchpad/sketchpad.js"></script>
 <script type="text/javascript" src="/static/sirtrevor/init.js"></script>
 <script src='{{ STATIC_URL }}js/note.js'></script>
 {% endblock %}

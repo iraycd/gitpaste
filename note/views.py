@@ -206,13 +206,13 @@ def note(request):
     commit.save()
 
     if note_set.private:
-        return redirect('note_view', pk=note_set.pk, private_key=note_set.private_key)
+        return redirect('note_view2', pk=note_set.pk, private_key=note_set.private_key)
     else:
-        return redirect('note_view', pk=note_set.pk)
+        return redirect('note_view2', pk=note_set.pk)
 
 
 @private(Set)
-def note_view(request, pk, note_set, private_key=None):
+def note_view(request, pk, note_set, private_key=None, advance=None):
     requested_commit = request.GET.get('commit')
     user = request.user
 
@@ -317,7 +317,7 @@ def note_view2(request, pk, note_set, private_key=None):
 
     # Always clear the comment form
     comment_form = CommentForm()
-    return render_to_response('note-view.html', {
+    return render_to_response('simple-note-view.html', {
         'note_set': note_set,
         'notes': commit.note_set.all(),
         'commit_current': commit,

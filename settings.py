@@ -14,6 +14,8 @@ HAYSTACK_CONNECTIONS = {
     },
 }
 
+BLOCK_TYPES = ['Text', 'List', 'Quote', 'Image', 'Video', 'Heading']
+
 
 USE_ICONS = True
 
